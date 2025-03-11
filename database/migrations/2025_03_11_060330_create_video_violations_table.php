@@ -12,14 +12,10 @@ return new class extends Migration {
     {
         Schema::create('video_violations', function (Blueprint $table) {
             $table->id(); // Primary Key
-            $table->uuid('video_id');
-            $table->unsignedBigInteger('violation_id'); // Updated to match violations.id
+            $table->foreignUuid('video_id')->constrained('videos')->cascadeOnDelete();
+            $table->foreignId('violation_id')->constrained('violations')->cascadeOnDelete();
             $table->timestamps();
-        
-            // Foreign Key Constraints
-            $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
-            $table->foreign('violation_id')->references('id')->on('violations')->onDelete('cascade');
-        });        
+        });
     }
 
     /**

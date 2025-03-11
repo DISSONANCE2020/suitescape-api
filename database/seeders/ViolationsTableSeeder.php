@@ -3,10 +3,12 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Violation;
 
-class ViolationsTableSeeder extends Seeder {
-    public function run(): void {
+class ViolationsTableSeeder extends Seeder
+{
+    public function run(): void
+    {
         $violations = [
             'Copyright Infringement',
             'Misleading Content',
@@ -17,10 +19,9 @@ class ViolationsTableSeeder extends Seeder {
         ];
 
         foreach ($violations as $violation) {
-            DB::table('violations')->insert([
+            Violation::create([
                 'name' => $violation,
             ]);
         }
     }
 }
-
