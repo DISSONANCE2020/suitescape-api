@@ -9,18 +9,17 @@ class AddModeratedByToVideosTable extends Migration
     public function up()
     {
         Schema::table('videos', function (Blueprint $table) {
-            // Use uuid() if users.id is a UUID. Otherwise, use unsignedBigInteger().
-            $table->uuid('moderated_by')
-                ->nullable()
-                ->after('is_approved');
-
-            $table->foreign('moderated_by')
-                ->references('id')
-                ->on('users')
-                ->onDelete('set null');
+            $table->foreignUuid('moderated_by')
+                  ->nullable()
+                  ->after('is_approved')
+                  ->constrained('users')
+                  ->nullOnDelete();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down()
     {
         Schema::table('videos', function (Blueprint $table) {
