@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('video_violations', function (Blueprint $table) {
             $table->id(); // Primary Key
             $table->uuid('video_id');
-            $table->unsignedTinyInteger('violation_id'); // Match violations.id
+            $table->unsignedBigInteger('violation_id'); // Updated to match violations.id
             $table->timestamps();
         
             // Foreign Key Constraints
@@ -21,7 +21,6 @@ return new class extends Migration {
             $table->foreign('violation_id')->references('id')->on('violations')->onDelete('cascade');
         });        
     }
-
 
     /**
      * Reverse the migrations.

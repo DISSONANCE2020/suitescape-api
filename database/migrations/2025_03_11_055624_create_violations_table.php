@@ -11,17 +11,16 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('violations', function (Blueprint $table) {
-            $table->tinyIncrements('id'); // Primary Key
+            $table->id(); // Violation ID
             $table->string('name')->unique(); // Violation Name
             $table->timestamps();
         });
     }
 
-
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('violations');
     }
