@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('video_violations', function (Blueprint $table) {
             $table->id(); // Primary Key
-            $table->foreignUuid('video_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('violation_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('video_id')->cascadeOnDelete();
+            $table->foreignId('violation_id')->cascadeOnDelete();
             $table->timestamps();
         });
     }
